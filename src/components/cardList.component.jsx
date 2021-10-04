@@ -55,22 +55,18 @@ const CardList = () => {
         }
 
         //If dropped in a different column
-        console.log("start", start, "finish", finish)
         const startTasks = Array.from(start.taskIds);
         startTasks.splice(source.index, 1);
         const newStart = {
             ...start,
             taskIds: startTasks
         }
-        console.log("newStart", newStart)
-        console.log("destination Index", destination.index, draggableId)
         const finishTasks = Array.from(finish.taskIds);
         finishTasks.splice(destination.index, 0, draggableId);
         const newFinish = {
             ...finish,
             taskIds: finishTasks
         }
-        console.log("newFinish", newFinish)
         const newState = {
             ...data,
             columns: {
@@ -91,7 +87,6 @@ const CardList = () => {
                     <div className="row">
                         {data.columnOrder.map((id, index) => {
                         const column = data.columns[id];
-                        console.log(dataset);
                         const tasks = column.taskIds.map(taskId => data.tasks[taskId]) 
                         return <Col key={column.id} tasks={tasks} column={column} index={index} />
                         })}
